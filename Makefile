@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+         #
+#    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/04/25 15:18:24 by sofiabueno       ###   ########.fr        #
+#    Updated: 2024/04/26 15:47:36 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,25 +27,26 @@ AR = ar -rcs
 UNAME = $(shell uname) # $(shell ...) executa um comando shell e guarda a saída como variável
 
 #PATHS
-LIBFT = libft
-FTPRINTF = ft_printf
-GNL = get_next_line
+LIBFTD = libft
+FTPRINTFD = ft_printf
+GNLD = get_next_line
 INC = include
 ifeq ($(UNAME), Darwin)
-	MLX_PATH = ./minilibx-mac
+	MLXD = ./minilibx-mac
 else
-	MLX_PATH = ./minilibx-linux
+	MLXD = ./minilibx-linux
 endif
-OBJ_PATH = objs
+OBJD = objs
 
 #FILES
 NAME = so_long
 SRC = teste
 OBJS = $(SRC_FILES:%=%.o)
+OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))
 
 #FLAGS
 CFLAGS = -Wall -Wextra -Werror -g 
-LFLAGS = -L ./$(LIBFT) -lft -L ./$(FTPRINTF) -lftprintf -I $(INC)
+LFLAGS = -L ./$(LIBFTD) -lft -L ./$(FTPRINTFD) -lftprintf -I $(INC)
 ifeq ($(UNAME), Darwin) 
 	CC = cc
 	LFLAGS += -framework OpenGL -framework AppKit -L ./minilibx-mac -lmlx
@@ -60,5 +61,31 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ_PATH) 
+$(NAME): $(OBJD) 
+	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)libft/*$(RESET)"
+	make -C $(LIBFTD)
+
+	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)ft_printf/*$(RESET)"
+	make -C $(FTPRINTFD)
+
+	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)minilibx/*$(RESET)"
+	make -C $(MLXD)
+
+	echo "$(YELLOW)Linking: $(RESET) $(CFLAGS) $(GREEN)*$(RESET)"
+	$(CC) $(CFLAGS) $(OBJ_TARGET) $(LFLAGS) -I$(INC)
+
+	echo "$(GREEN)Done!$(RESET)"
+
+$(OBJD)/%.o : $(SRC)/%.c
+	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INC)
+
+$(OBJD):
+	mkdir -p $(OBJD)
+
+clean:
+	make clean -c $(LIBFTD)
+	make clean -c $(FTPRINTFD)
+	make clean -c $(MLXD)
+
+	
 
