@@ -6,7 +6,7 @@
 #    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/04/26 15:47:36 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/04/26 16:10:03 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,5 +87,18 @@ clean:
 	make clean -c $(FTPRINTFD)
 	make clean -c $(MLXD)
 
-	
+	echo "$(RED)Deleted: $(RESET) $(GREEN)$(OBJD)$(RESET)"
+	$(RM) $(OBJD)
 
+fclean:
+	make fclean -C $(LIBFTD)
+	make fclean -C $(FTPRINTFD)
+
+	echo "$(RED)Deleted: $(RESET) $(GREEN)$(NAME)$(RESET)"
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+
+.SILENT:
