@@ -1,31 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 16:52:44 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/04/29 15:09:38 by sbueno-s         ###   ########.fr       */
+/*   Created: 2024/04/29 15:30:50 by sbueno-s          #+#    #+#             */
+/*   Updated: 2024/04/29 15:33:21 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-/**
- * @brief checks if the given map is in a .ber file.
- * ft_strnstr returns null if it doesnt find .ber to the end of the file name,
- * which implicates error;
- 
- * @param map_name 
- * @return 1 - error | 0 - valid extension
- */
-int	valid_extension(char *map_name)
-{
-	int	i;
-
-	i = ft_strlen(map_name);
-	if (!(ft_strnstr((map_name + (i - 4)), ".ber", 4)))
-		return (1);
-	return (0);
-}
+int init_map(t_map *map, char *)
