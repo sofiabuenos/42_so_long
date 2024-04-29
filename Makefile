@@ -6,7 +6,7 @@
 #    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/04/26 16:10:03 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/04/29 14:41:25 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,25 +22,27 @@ CYAN 	= \033[1;36m
 WHITE 	= \033[1;37m
 
 #COMMANDS
-RM = rm- fr
+RM = rm -fr
 AR = ar -rcs
-UNAME = $(shell uname) # $(shell ...) executa um comando shell e guarda a saída como variável
+UNAME = $(shell uname)
 
 #PATHS
 LIBFTD = libft
 FTPRINTFD = ft_printf
-GNLD = get_next_line
-INC = include
+INC = inc
+SRCD = src
+OBJD = objs
+
 ifeq ($(UNAME), Darwin)
 	MLXD = ./minilibx-mac
 else
 	MLXD = ./minilibx-linux
 endif
-OBJD = objs
 
 #FILES
 NAME = so_long
-SRC = teste
+SRC_FILES = main checks
+
 OBJS = $(SRC_FILES:%=%.o)
 OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))
 
@@ -61,38 +63,39 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJD) 
+$(NAME): $(OBJD) $(OBJ_TARGET) 
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)libft/*$(RESET)"
-	make -C $(LIBFTD)
+	make -s -C $(LIBFTD)
+	make bonus -s -C $(LIBFTD)
 
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)ft_printf/*$(RESET)"
-	make -C $(FTPRINTFD)
+	make -s -C $(FTPRINTFD)
 
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)minilibx/*$(RESET)"
-	make -C $(MLXD)
+	make -s -C $(MLXD) 2>/dev/null
 
 	echo "$(YELLOW)Linking: $(RESET) $(CFLAGS) $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) $(OBJ_TARGET) $(LFLAGS) -I$(INC)
+	$(CC) $(CFLAGS) $(OBJ_TARGET) $(LFLAGS) -I$(INC) -o $(NAME)
 
 	echo "$(GREEN)Done!$(RESET)"
 
-$(OBJD)/%.o : $(SRC)/%.c
+$(OBJD)/%.o : $(SRCD)/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INC)
 
 $(OBJD):
 	mkdir -p $(OBJD)
 
 clean:
-	make clean -c $(LIBFTD)
-	make clean -c $(FTPRINTFD)
-	make clean -c $(MLXD)
+	make clean -s -C $(LIBFTD)
+	make clean -s -C $(FTPRINTFD)
+	make clean -s -C $(MLXD) 2>/dev/null
 
 	echo "$(RED)Deleted: $(RESET) $(GREEN)$(OBJD)$(RESET)"
 	$(RM) $(OBJD)
 
-fclean:
-	make fclean -C $(LIBFTD)
-	make fclean -C $(FTPRINTFD)
+fclean: clean
+	make fclean -s -C $(LIBFTD)
+	make fclean -s -C $(FTPRINTFD)
 
 	echo "$(RED)Deleted: $(RESET) $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
