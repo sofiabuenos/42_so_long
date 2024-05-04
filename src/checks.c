@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:52:44 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/04/29 15:09:38 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:04:14 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	valid_extension(char *map_name)
 	int	i;
 
 	i = ft_strlen(map_name);
-	if (!(ft_strnstr((map_name + (i - 4)), ".ber", 4)))
-		return (1);
+	if (i > 3)
+	{
+		if (!(ft_strnstr((map_name + (i - 4)), ".ber", 4)))
+			return (1);
+	}
 	return (0);
 }

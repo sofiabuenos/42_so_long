@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/04/29 21:41:31 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/03 17:41:32 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ typedef struct s_map
 
 /* FUNCTIONS */
 int	valid_extension(char *map_name);
+char	*read_map(/*t_map *map,*/ char *map_name);
+
 
 #endif
