@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/05/06 15:53:01 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/08 20:22:21 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,23 @@
 #include "../ft_printf/ft_printf.h"
 
 /* STRUCTS */
+typedef struct s_point
+{
+	unsigned int	x;
+	unsigned int	y;
+}					t_point;
 
 typedef struct s_map
 {
-	char			**map_blueprint;
+	char			**map_bytes;
 	unsigned int	lines;
 	unsigned int	columns;
 	unsigned int	players;
 	unsigned int	exits;
 	unsigned int	collectibles;
+	t_point			coord;
 }					t_map;
+
 
 /* FUNCTIONS */
 int		check_errors(char *map_name, char *joined_map, t_map **map);
