@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
+#    By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/05/03 14:57:54 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/05/04 16:59:33 by sofiabueno       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ endif
 
 #FILES
 NAME = so_long
-SRC_FILES = main checks init
+SRC_FILES = main checks init exit_and_free
 
 OBJS = $(SRC_FILES:%=%.o)
 OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))

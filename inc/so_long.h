@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/05/03 17:41:32 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:53:01 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_map
 {
-	char			**map;
+	char			**map_blueprint;
 	unsigned int	lines;
 	unsigned int	columns;
 	unsigned int	players;
@@ -31,8 +31,12 @@ typedef struct s_map
 }					t_map;
 
 /* FUNCTIONS */
-int	valid_extension(char *map_name);
-char	*read_map(/*t_map *map,*/ char *map_name);
+int		check_errors(char *map_name, char *joined_map, t_map **map);
+int		valid_extension(char *map_name);
+char	*read_map(char *map_name);
+int		end_game(int error, char *message);
+void	init_map(/*char *map_name, */ char *joined_map, t_map **map);
+int		count_char(t_map **map, char c);
 
 
 #endif
