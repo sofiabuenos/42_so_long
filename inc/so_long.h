@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/05/10 16:44:24 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/13 17:55:10 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdbool.h>
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
 
@@ -40,4 +41,6 @@ typedef struct s_map
 /* FUNCTIONS */
 int		extension_check(char *map_name);
 void	end_game(bool error, char *error_msg);
+void	map_init(char *map_name, char *single_line_map, t_map *map);
+int		map_checks(t_map *map);
 #endif
