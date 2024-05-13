@@ -6,7 +6,7 @@
 #    By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/05/04 16:59:33 by sofiabueno       ###   ########.fr        #
+#    Updated: 2024/05/09 15:23:25 by sofiabueno       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ endif
 
 #FILES
 NAME = so_long
-SRC_FILES = main checks init exit_and_free
+SRC_FILES = main checks init exit_and_free utils
 
 OBJS = $(SRC_FILES:%=%.o)
 OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))
