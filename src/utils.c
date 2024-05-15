@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/10 16:39:20 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/14 19:16:57 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int	extension_check(char *map_name)
 {
 	int		i;
-	
+
 	i = ft_strlen(map_name);
 	if (i > 3)
 	{
@@ -32,3 +32,5 @@ int	extension_check(char *map_name)
 	}
 	return (0);
 }
+
+void	coord_init(t_map *map)

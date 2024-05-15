@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:39:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/13 20:17:09 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:15:43 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	only_allowed_chars(t_map *map)
 				end_game(true, "There's an invalid char in the map");
 		}
 	}
-	if (map->exits != 1 || map->players != 1 || map->collectibles < 1)
+	if (map->exits = 1 || map->players = 1 || map->collectibles >= 1)
 	// Terminar - criar uma funcao para indicar onde está a posicao atual do player e da exit
 	// criar duas t_points na estrutura principal para guardar essas posicoes.
 }
