@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/14 19:16:57 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/15 15:45:54 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,33 @@ int	extension_check(char *map_name)
 	}
 	return (0);
 }
-
+/**
+ * @brief this function saves the player and exit's statring positions.
+ * x - rows
+ * y - columns
+ * @param map 
+ */
 void	coord_init(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->map_bytes[++i])
+	{
+		j = -1;
+		while (map->map_bytes[i][++j])
+		{
+			if (map->map_bytes[i][j] == 'P')
+			{
+				map->p_coord.x = i;
+				map->p_coord.y = j;
+			}
+			else if (map->map_bytes[i][j] == 'E')
+			{
+				map->e_coord.x = i;
+				map->e_coord.y = j;
+			}
+		}
+	}
+}
