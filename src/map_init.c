@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:23:28 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/13 20:01:48 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:37:43 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ void	count_map_lines(char *single_line_map, t_map *map)
 	if (*single_line_map != '\n') // ver se fazer && *single_line_map resolve o problema de ler o null
 		rows++;
 	map->rows = rows;
+	printf("count_map_lines - %d", map->rows);
 }
 
-void	map_init(char *map_name, char *single_line_map, t_map *map)
+void	map_init(char *map_name, char *single_line_map, t_map *map, t_game *game)
 {
 	unsigned int	i;
 
 	ft_bzero(map, sizeof(t_map));
+	ft_bzero(game, sizeof(t_game));
 	single_line_map = read_map(map_name, single_line_map);
 	count_map_lines(single_line_map, map);
 	map->map_bytes = ft_split(single_line_map, '\n');
