@@ -6,7 +6,7 @@
 #    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/05/13 16:57:10 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/05/20 16:50:24 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ endif
 
 #FILES
 NAME = so_long
-SRC_FILES = main map_init map_checks end_game utils
+SRC_FILES = main map_init map_checks end_game utils mlx_init
 
 OBJS = $(SRC_FILES:%=%.o)
 OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))

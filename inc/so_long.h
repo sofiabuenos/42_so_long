@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/05/17 16:33:08 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/05/20 16:49:44 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdbool.h>
 #include "../libft/libft.h"
 #include "../ft_printf/ft_printf.h"
+#include "../minilibx-linux/mlx.h"
+#include "../minilibx-mac/mlx.h"
 
 /* STRUCTS */
 typedef struct s_point
@@ -52,4 +54,5 @@ int		map_checks(t_map *map, t_game *game);
 void	coord_init(t_map *map);
 void	floodfill(t_map *map, t_game *game, char **map_dup, t_point pos);
 void	map_dup_free(char **map_dup);
+int		make_window();
 #endif

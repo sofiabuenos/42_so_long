@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 16:19:17 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/05/20 16:49:03 by sbueno-s         ###   ########.fr       */
+/*   Created: 2024/05/20 15:59:40 by sbueno-s          #+#    #+#             */
+/*   Updated: 2024/05/20 17:10:46 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	main(int ac, char **av)
-{
-	char	*map_name;
-	char	*single_line_map;
-	t_map	map;
-	t_game	game;
+#define WIDTH 400
+#define HEIGHT 400
 
-	map_name = av[1];
-	single_line_map = NULL;
-	if (ac != 2)
-		end_game(true, "Oops! missing parameters, please use: ./executablle_fle path_to_map_file.ber\n");
-	if(extension_check(map_name))
-		end_game(true, "Oops! File extension should be .ber");
-	map_init(map_name, single_line_map, &map, &game);
-	map_checks(&map, &game);
-	make_window();
+int read_key( int key, void *data)
+{
+	(void)data;
+	end_game(true, "game over");
+	printf("voce clicou: %c\n", key);
+	return (0);
+}
+
+int	make_window()
+{
+	void *mlx;
+	void *mlx_win;
+
+	mlx = mlx_init();
+	if (!mlx)
+		end_game(true, "Memory Allocation error at mlx_init");
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "So_long");
+	mlx_put_image_to_window()
+	mlx_hook(mlx_win, 17, 0L, read_key, NULL);
+	mlx_loop(mlx);
 	return (0);
 }
