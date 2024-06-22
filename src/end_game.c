@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/22 20:41:58 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:30:35 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	destroy_map(t_map *map)
 	// free(map);
 }
 
-void	destroy_game(t_game *game)
+void	finish(t_game *game)
 {
 	if (!game)
 		return ;
@@ -32,7 +32,8 @@ void	destroy_game(t_game *game)
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
 	#endif
-	free(game->mlx);
+	if (game->mlx)
+		free(game->mlx);
 }
 
 void	end_game(bool error, char *error_msg, t_map *map, t_game *game)
@@ -40,7 +41,7 @@ void	end_game(bool error, char *error_msg, t_map *map, t_game *game)
 	if (error)
 	{
 		destroy_map(map);
-		destroy_game(game);
+		finish(game);
 		ft_printf("Error\n");
 		ft_printf("%s", error_msg);
 		exit (1);

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/17 16:22:43 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/22 17:32:53 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,19 @@ int	extension_check(char *map_name)
 	}
 	return (0);
 }
+
+void	init_game_current_pos(t_game *game, int x, int y)
+{
+	game->current.x = x;
+	game->current.y = y;
+}
 /**
  * @brief this function saves the player and exit's statring positions.
  * x - rows
  * y - columns
  * @param map 
  */
-void	coord_init(t_map *map)
+void	coord_init(t_game *game, t_map *map)
 {
 	int	i;
 	int	j;
@@ -53,6 +59,8 @@ void	coord_init(t_map *map)
 			{
 				map->p_coord.x = i;
 				map->p_coord.y = j;
+				init_game_current_pos(game, i, j);
+				//printf("%d, %d\n", game->current.x, game->current.y);
 			}
 			else if (map->map_bytes[i][j] == 'E')
 			{
@@ -61,6 +69,7 @@ void	coord_init(t_map *map)
 			}
 		}
 	}
+	
 }
 
 void	floodfill(t_map *map, t_game *game, char **map_dup, t_point pos)

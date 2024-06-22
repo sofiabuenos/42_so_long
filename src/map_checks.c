@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:39:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/05/22 17:51:36 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:28:49 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	only_allowed_chars(t_map *map, t_game *game)
 		}
 	}
 	if (map->exits == 1 && map->players == 1 && map->collectibles >= 1)
-		coord_init(map);
+		coord_init(game, map);
 	else
 		end_game(true, "There's more than one player/ exit/ no collectibles", map, game);
 	//ft_printf("PLAYER\nline:%d\ncolumn:%d\n", map->p_coord.x, map->p_coord.y);
@@ -106,7 +106,6 @@ bool	valid_path(t_map *map, t_game *game)
 
 int	map_checks(t_map *map, t_game *game)
 {
-	
 	if (!map->map_bytes[0])
 		end_game(true, "Map is empty\n", map, game);
 	if (!map_is_rectangular(map))
