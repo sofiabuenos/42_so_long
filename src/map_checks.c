@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:39:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/22 17:28:49 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/25 15:48:02 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void	only_allowed_chars(t_map *map, t_game *game)
 			else if (map->map_bytes[i][j] == 'P')
 				map->players++;
 			else if (map->map_bytes[i][j] == 'C')
-				map->collectibles++;
+				map->collectables++;
 			else if (map->map_bytes[i][j] != '0' && map->map_bytes[i][j] != '1')
 				end_game(true, "There's an invalid char in the map", map, game);
 		}
 	}
-	if (map->exits == 1 && map->players == 1 && map->collectibles >= 1)
+	if (map->exits == 1 && map->players == 1 && map->collectables >= 1)
 		coord_init(game, map);
 	else
-		end_game(true, "There's more than one player/ exit/ no collectibles", map, game);
+		end_game(true, "There's more than one player/ exit/ no collectables", map, game);
 	//ft_printf("PLAYER\nline:%d\ncolumn:%d\n", map->p_coord.x, map->p_coord.y);
 	//ft_printf("EXIT\nline:%d\ncolumn:%d\n", map->e_coord.x, map->e_coord.y);
 }
@@ -98,7 +98,7 @@ bool	valid_path(t_map *map, t_game *game)
 	map_dup[i] = NULL;
 	floodfill(map, game, map_dup, map->p_coord);
 	map_dup_free(map_dup);
-	if (game->path == 1 && game->collected == map->collectibles)
+	if (game->path == 1 && game->collected == map->collectables)
 		return (true);
 	else
 		return (false);

@@ -3,30 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:59:40 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/22 17:50:17 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/25 16:38:41 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-
-// int	make_window()
-// {
-// 	void *mlx;
-// 	void *mlx_win;
-
-// 	mlx = mlx_init();
-// 	if (!mlx)
-// 		end_game(true, "Memory Allocation error at mlx_init");
-// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "So_long");
-// 	mlx_put_image_to_window()
-// 	mlx_hook(mlx_win, 17, 0L, finish, NULL);
-// 	mlx_loop(mlx);
-// 	return (0);
-// }
 
 //  SINGLETON CONCEPT TO STUDY <3
 
@@ -122,6 +107,18 @@ int	pressed_key(int keycode, t_game *game)
 		game->next = (t_point){game->current.x + 1, game->current.y};
 	return (keycode);
 }
+
+int	put_game(t_game *game, t_map *map)
+{
+	printf("%d, %d \n", game->next.y, game->next.x);
+	if (!player_moved(game, map, game->next))
+		return (0);
+	printf("entro na funcao player_moved\n");
+	game->moves++;
+	ft_printf("Number of moves: %d\n", game->moves);
+	move_player(game, map);
+	return (0);
+}
 /**
  * @brief 
  * mlx_init - creates the connection between the software and the display (screen)
@@ -145,7 +142,8 @@ int	play_game(t_map *map, t_game *game)
 	display_images(map, game);
 	mlx_hook(game->window, 2, KEY_MASK, pressed_key, game);
 	mlx_hook(game->window, 17, 0L, finish_game, NULL);
-	//ver a put_game
+	printf("%d, %d \n", game->next.y, game->next.x);
+	mlx_loop_hook(game->mlx, put_game, NULL);
 	mlx_loop(game->mlx);
 	return (0);
 }

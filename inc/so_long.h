@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/22 17:49:02 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/25 16:10:24 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_map
 	unsigned int	columns;
 	unsigned int	players;
 	unsigned int	exits;
-	unsigned int	collectibles;
+	unsigned int	collectables;
 	unsigned int	height;
 	unsigned int	width;
 	t_point			p_coord;
@@ -157,4 +157,8 @@ void	coord_init(t_game *game, t_map *map);
 void	floodfill(t_map *map, t_game *game, char **map_dup, t_point pos);
 void	map_dup_free(char **map_dup);
 int		play_game(t_map *map, t_game *game);
+void	place_images(t_map *map, t_game *game, t_point coord);
+void	move_player(t_game *game, t_map *map);
+t_map_chars	element(t_map *map, t_point pos);
+int	player_moved(t_game *game, t_map *map, t_point next);
 #endif
