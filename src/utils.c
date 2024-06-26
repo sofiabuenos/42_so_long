@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/25 16:41:05 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:38:45 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	coord_init(t_game *game, t_map *map)
 				map->p_coord.x = i;
 				map->p_coord.y = j;
 				init_game_current_pos(game, i, j);
-				game->next = game->current;
-				printf("%d, %d\n", game->next.y, game->next.x);
+				// //game->next = game->current;
+				printf("%d, %d\n", game->current.y, game->current.x);
 			}
 			else if (map->map_bytes[i][j] == 'E')
 			{

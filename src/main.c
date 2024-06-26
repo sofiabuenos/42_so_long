@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:19:17 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/25 16:43:47 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:10:36 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 		end_game(true, "Oops! File extension should be .ber", &map, &game);
 	map_init(map_name, single_line_map, &map, &game); 
 	map_checks(&map, &game);
-	map_dup_free(map.map_bytes);
-	//play_game(&map, &game);
+	//map_dup_free(map.map_bytes);
+	play_game(&map, &game);
 	return (0);
 }

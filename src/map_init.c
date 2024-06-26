@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:23:28 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/22 15:59:49 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/26 15:44:49 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	count_map_lines(char *single_line_map, t_map *map)
 }
 /**
  * @brief map init inicia as estruturas, lê o mapa passado e armazena-o em map_bytes.
- *  --> apagar a parte do loop que imprime no terminal <--
+ *  --> apagar a parte do loop que imprime o mapa no terminal <--
  * @param map_name 
  * @param single_line_map 
  * @param map 

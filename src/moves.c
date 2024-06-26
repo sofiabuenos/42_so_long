@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 14:51:15 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/25 16:29:50 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:53:57 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	player_moved(t_game *game, t_map *map, t_point next)
 {
-	printf("entro na funcao player_moved\n");
+/* 	printf("next.y = %d\n next.x = %d\n", next.y, next.x); */
 	if (map->map_bytes[next.y][next.x] == WALL)
 		return (0);
-	else if (next.y == game->current.x && next.x == game->current.y)
+	else if (next.y == game->current.y && next.x == game->current.x)
 		return (0);
 	return (1);
 }

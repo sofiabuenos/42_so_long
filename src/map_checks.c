@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:39:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/25 15:48:02 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:47:18 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	valid_path(t_map *map, t_game *game)
 	char	**map_dup;
 	unsigned int		i;
 
-	map_dup = malloc(sizeof (char *) * (map->rows + 1)); //minhas rows já estão imprimindo uma linha a mais
+	map_dup = malloc(sizeof (char *) * (map->rows + 1));
 	if (!map_dup)
 		end_game(true, "Memory allocation faliure at valid_map", map, game);
 	i = -1;

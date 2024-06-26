@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:59:40 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/25 16:38:41 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:12:42 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,30 +93,36 @@ void	display_images(t_map *map, t_game *game)
  * @param game 
  * @return int 
  */
-int	pressed_key(int keycode, t_game *game)
+int	pressed_key(int keycode, void *data)
 {
+	t_game *game;
+
+	game = (t_game *)data;
 	if (keycode == ESC || keycode == Q)
 		//funcao para terminar o jogo com um ganhou/ perdeu; pode ser a finish_game mais elaborada
 	if (keycode == UP || keycode == W)
-		game->next = (t_point){game->current.x, game->current.y - 1};
+		game->next = (t_point){game->current.x, (game->current.y - 1)};
 	if (keycode == DOWN || keycode == S)
-		game->next = (t_point){game->current.x, game->current.y + 1};
+		game->next = (t_point){game->current.x, (game->current.y + 1)};
 	else if (keycode == LEFT || keycode == A)
-		game->next = (t_point){game->current.x - 1, game->current.y};
+		game->next = (t_point){(game->current.x - 1), game->current.y};
 	else if (keycode == RIGHT || keycode == D)
-		game->next = (t_point){game->current.x + 1, game->current.y};
-	return (keycode);
+		game->next = (t_point){(game->current.x + 1), game->current.y};
+	printf("next.y = %d\n next.x = %d", game->next.y, game->next.x);
+	return (0);
 }
 
-int	put_game(t_game *game, t_map *map)
+int	put_game(void *data/* , t_map *map */)
 {
-	printf("%d, %d \n", game->next.y, game->next.x);
-	if (!player_moved(game, map, game->next))
+	t_game *game;
+
+	game = (t_game *)data;
+	if (!player_moved(game, map_add()->map, game->next))
 		return (0);
-	printf("entro na funcao player_moved\n");
 	game->moves++;
 	ft_printf("Number of moves: %d\n", game->moves);
-	move_player(game, map);
+	move_player(game, map_add()->map);
+	printf("\n\nDO SINGLETON: %d\n\n", map_add()->map->collectables);
 	return (0);
 }
 /**
@@ -142,8 +148,7 @@ int	play_game(t_map *map, t_game *game)
 	display_images(map, game);
 	mlx_hook(game->window, 2, KEY_MASK, pressed_key, game);
 	mlx_hook(game->window, 17, 0L, finish_game, NULL);
-	printf("%d, %d \n", game->next.y, game->next.x);
-	mlx_loop_hook(game->mlx, put_game, NULL);
+	mlx_loop_hook(game->mlx, put_game, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
