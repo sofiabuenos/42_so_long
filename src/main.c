@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:19:17 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/26 19:27:28 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:56:09 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 {
 	char	*map_name;
 	char	*single_line_map;
+	//t_map	map;
 	t_game	game;
 
 	map_name = av[1];
@@ -31,7 +32,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_printf("Oops! Check parameters, please use:./executablle_fle path_to_map_file.ber\n");
 	if(extension_check(map_name))
-		ft_printf("Oops! File extension should be .ber");
+		end_game(true, "Oops! File extension should be .ber", &map, &game);
 	map_init(map_name, single_line_map, &map, &game); 
 	map_checks(&map, &game);
 	//map_dup_free(map.map_bytes);
