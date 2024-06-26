@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:23:28 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/26 15:44:49 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:06:58 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	map_init(char *map_name, char *single_line_map, t_map *map, t_game *game)
 {
 	unsigned int	i;
 
-	ft_bzero(map, sizeof(t_map));
+	//ft_bzero(map, sizeof(t_map));
 	ft_bzero(game, sizeof(t_game));
 	single_line_map = read_map(map_name, single_line_map, map, game);
 	count_map_lines(single_line_map, map);

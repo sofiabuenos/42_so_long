@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/26 15:39:28 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:05:04 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ typedef struct s_point
 	unsigned int	y;
 }					t_point;
 
+typedef struct s_images
+{
+	void	*img;
+	int		height;
+	int		width;
+}			t_images;
+
 typedef struct s_map
 {
 	char			**map_bytes;
@@ -127,16 +134,9 @@ typedef struct s_map
 	t_point			e_coord;
 }					t_map;
 
-typedef struct s_images
-{
-	void	*img;
-	int		height;
-	int		width;
-}			t_images;
-
 typedef struct s_game
 {
-	//t_map			*map;
+	t_map			*map;
 	unsigned int	collected;
 	unsigned int	moves;
 	bool			path;
