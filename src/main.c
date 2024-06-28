@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:19:17 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/27 15:18:38 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 16:17:45 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int ac, char **av)
 		exit(1);
 	}
 	load_game(map_name);
+	
+	
 	//map_init(map_name, single_line_map, &map, &game); 
 	//map_checks(&map, &game);
 	//map_dup_free(map.map_bytes);

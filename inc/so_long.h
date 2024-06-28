@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/27 22:56:52 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 20:00:39 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 # define SIZE 32
 # define IMG_NUM 5
 
-# define IB "./images/sand.xpm"
-# define IO "./images/grass.xpm"
-# define IP "./images/bunny.xpm"
-# define IE "./images/ship.xpm"
-# define IC "./images/carrot.xpm"
+# define IBACK "./images/sand.xpm"
+# define IOBST "./images/grass.xpm"
+# define IPLAY "./images/bunny.xpm"
+# define IEXI "./images/ship.xpm"
+# define ICOLL "./images/carrot.xpm"
 
 # ifdef __APPLE__
 
@@ -98,11 +98,11 @@ typedef enum e_map_chars
 
 typedef enum e_img_index
 {
-	B,
-	O,
-	P,
-	E,
-	C
+	BACK,
+	OBST,
+	PLAY,
+	EXI,
+	COLL
 }			t_img_index;
 
 /* STRUCTS */
@@ -148,21 +148,21 @@ typedef struct s_game
 
 /* FUNCTIONS */
 
-int		extension_check(char *map_name);
-void	error_msg(t_game *game, char *msg);
-void	load_game(char *map_name);
-void	check_errors(t_game *game);
-void	coord_init(t_game *game);
-void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos);
+int			extension_check(char *map_name);
+void		error_msg(t_game *game, char *msg);
+void		kill_game(t_game *game);
+void		load_game(char *map_name);
+void		check_errors(t_game *game);
+void		coord_init(t_game *game);
+void		floodfill( t_game *game, t_map *map, char **map_dup, t_point pos);
+void		set_graphics(t_game *game);
+void		place_images(t_game *game, t_point coord);
+int			player_moved(t_game *game, t_point next);
+void		move_player(t_game *game);
+t_map_chars	element(t_game *game, t_point pos);
 
 
-void	end_game(bool error, char *error_msg, t_map *map, t_game *game);
-//void	map_init(char *map_name, char *single_line_map, t_map *map, t_game *game);
 int		map_checks(t_map *map, t_game *game);
 void	map_dup_free(char **map_dup);
 int		play_game(t_map *map, t_game *game);
-void	place_images(t_map *map, t_game *game, t_point coord);
-void	move_player(t_game *game, t_map *map);
-t_map_chars	element(t_map *map, t_point pos);
-int	player_moved(t_game *game, t_map *map, t_point next);
 #endif

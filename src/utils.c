@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/27 23:02:17 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 16:44:29 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos)
 	else if (map_dup[pos.y][pos.x] == 'E')
 		game->path = true;
 	map_dup[pos.y][pos.x] = '1';
-	floodfill(game, map, map_dup, (t_point){pos.y - 1, pos.x}); // esquerda
-	floodfill(game, map, map_dup, (t_point){pos.y + 1, pos.x}); // direira
-	floodfill(game, map, map_dup, (t_point){pos.y, pos.x - 1}); // cima
-	floodfill(game, map, map_dup, (t_point){pos.y, pos.x + 1}); // baixo
+	floodfill(game, map, map_dup, (t_point){pos.x - 1, pos.y});
+	floodfill(game, map, map_dup, (t_point){pos.x + 1, pos.y});
+	floodfill(game, map, map_dup, (t_point){pos.x, pos.y - 1});
+	floodfill(game, map, map_dup, (t_point){pos.x, pos.y + 1});
 }
 
 void	map_dup_free(char **map_dup)
@@ -86,4 +86,22 @@ void	map_dup_free(char **map_dup)
 		free(map_dup[i]);
 	free(map_dup[i]);
 	free(map_dup);
+}
+
+void	place_images(t_game *game, t_point coord)
+{
+	t_images sprite;
+	if (game->map->map_bytes[coord.y][coord.x] == WALL)
+		sprite = game->images[OBST];
+	else if (game->map->map_bytes[coord.y][coord.x] == PLAYER)
+		sprite = game->images[PLAY];
+	else if (game->map->map_bytes[coord.y][coord.x] == COLLECT)
+		sprite = game->images[COLL];
+	else if (game->map->map_bytes[coord.y][coord.x] != WALL)
+		sprite = game->images[BACK];
+	// if (!game->mlx || !game->window || !sprite.img) {
+    //     printf("Invalid argument to mlx_put_image_to_window\n");
+    //     return;
+    // }
+	mlx_put_image_to_window(game->mlx, game->window, sprite.img, (SIZE * coord.x), (SIZE * coord.y));
 }

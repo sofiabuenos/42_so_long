@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:31:00 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/27 19:13:14 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 16:20:21 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	load_game(char *map_name)
 	ft_bzero(&game, sizeof(t_game));
 	init_map(&game, map_name);
 	check_errors(&game);
+	set_graphics(&game);
 }

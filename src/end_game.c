@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/27 16:30:45 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 18:06:52 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,14 @@ void	error_msg(t_game *game, char *msg)
 {
 	if (game)
 		kill_game(game);
-	if (game->window) // necessário?
-		mlx_destroy_window(game->mlx, game->window); 
-	#ifdef __linux__ // necessário? 
- 	if (game->mlx)
- 		mlx_destroy_display(game->mlx);
- 	#endif
-	free(game->mlx);
+	// if (game->window) // necessário?
+	// 	mlx_destroy_window(game->mlx, game->window); 
+	// #ifdef __linux__ // necessário? 
+ 	// if (game->mlx)
+ 	// 	mlx_destroy_display(game->mlx);
+ 	//#endif
+	//free(game->mlx);
 	ft_printf(msg);
 	exit(1);
 }
 
-
-
-// void	end_game(bool error, char *error_msg, t_map *map, t_game *game)
-// {
-// 	if (error)
-// 	{
-// 		destroy_map(map);
-// 		finish(game);
-// 		ft_printf("Error\n");
-// 		ft_printf("%s", error_msg);
-// 		exit (1);
-// 	}
-// }

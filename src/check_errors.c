@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:45:16 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/27 22:57:24 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/06/28 17:36:04 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ bool	map_is_rectangular(t_map *map)
 	}
 	map->columns = columns;
 	map->rows = rows;
+	map->width = map->columns * SIZE;
+	map->height = map->rows * SIZE;
 	//printf("num of columns: %d\n num of rows: %d\n", map->columns, map->rows);
 	return (true);
 }
