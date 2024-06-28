@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
+#    By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/06/25 16:11:23 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/06/27 19:04:14 by sofiabueno       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ endif
 
 #FILES
 NAME = so_long
-SRC_FILES = main map_init map_checks end_game utils mlx_init moves
+SRC_FILES = main load_game check_errors map_init map_checks end_game utils mlx_init moves
 
 OBJS = $(SRC_FILES:%=%.o)
 OBJ_TARGET = $(addprefix $(OBJD)/, $(OBJS))

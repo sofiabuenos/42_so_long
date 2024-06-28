@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/26 19:05:04 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:56:52 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,34 +127,38 @@ typedef struct s_map
 	unsigned int	columns;
 	unsigned int	players;
 	unsigned int	exits;
-	unsigned int	collectables;
+	unsigned int	collect;
 	unsigned int	height;
 	unsigned int	width;
-	t_point			p_coord;
-	t_point			e_coord;
 }					t_map;
 
 typedef struct s_game
 {
 	t_map			*map;
+	t_images		*images;
+	void			*mlx;
+	void			*window;
 	unsigned int	collected;
 	unsigned int	moves;
 	bool			path;
-	void			*mlx;
-	void			*window;
-	t_images		*images;
 	t_point			current;
 	t_point			next;
+	t_point			finish;
 }					t_game;
 
 /* FUNCTIONS */
 
 int		extension_check(char *map_name);
+void	error_msg(t_game *game, char *msg);
+void	load_game(char *map_name);
+void	check_errors(t_game *game);
+void	coord_init(t_game *game);
+void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos);
+
+
 void	end_game(bool error, char *error_msg, t_map *map, t_game *game);
-void	map_init(char *map_name, char *single_line_map, t_map *map, t_game *game);
+//void	map_init(char *map_name, char *single_line_map, t_map *map, t_game *game);
 int		map_checks(t_map *map, t_game *game);
-void	coord_init(t_game *game, t_map *map);
-void	floodfill(t_map *map, t_game *game, char **map_dup, t_point pos);
 void	map_dup_free(char **map_dup);
 int		play_game(t_map *map, t_game *game);
 void	place_images(t_map *map, t_game *game, t_point coord);
