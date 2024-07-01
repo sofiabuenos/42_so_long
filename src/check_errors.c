@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:45:16 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/28 17:36:04 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:31:06 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	path_is_valid(t_game *game, t_map *map)
 {
-	char	**map_dup;
+	char				**map_dup;
 	unsigned int		i;
 
 	map_dup = malloc(sizeof (char *) * (map->rows + 1));
@@ -51,19 +51,15 @@ bool	walls_are_intact(t_map *map)
 		{
 			while (map->map_bytes[i][++j])
 				if (map->map_bytes[i][0] != '1' ||
-					 map->map_bytes[i][map->columns -1] != '1')
+					map->map_bytes[i][map->columns -1] != '1')
 					return (false);
 		}
 	}
 	return (true);
 }
 
-bool	only_allowed_chars(t_game *game)
+bool	only_allowed_chars(t_game *game, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = -1;
 	while (game->map->map_bytes[++i])
 	{
 		j = -1;
@@ -75,11 +71,13 @@ bool	only_allowed_chars(t_game *game)
 				game->map->players++;
 			else if (game->map->map_bytes[i][j] == 'C')
 				game->map->collect++;
-			else if (game->map->map_bytes[i][j] != '0' && game->map->map_bytes[i][j] != '1')
+			else if (game->map->map_bytes[i][j] != '0'
+					&& game->map->map_bytes[i][j] != '1')
 				return (false);
 		}
 	}
-	if (game->map->exits == 1 && game->map->players == 1 && game->map->collect >= 1)
+	if (game->map->exits == 1 && game->map->players == 1 &&
+		game->map->collect >= 1)
 		coord_init(game);
 	else
 		error_msg(game, "There's more than one exit/player or no collectable");
@@ -95,7 +93,7 @@ bool	map_is_rectangular(t_map *map)
 	columns = ft_strlen(map->map_bytes[rows]);
 	while (map->map_bytes[rows])
 	{
-		if(ft_strlen(map->map_bytes[rows]) != columns)
+		if (ft_strlen(map->map_bytes[rows]) != columns)
 			return (false);
 		rows++;
 	}
@@ -103,7 +101,6 @@ bool	map_is_rectangular(t_map *map)
 	map->rows = rows;
 	map->width = map->columns * SIZE;
 	map->height = map->rows * SIZE;
-	//printf("num of columns: %d\n num of rows: %d\n", map->columns, map->rows);
 	return (true);
 }
 
@@ -113,7 +110,7 @@ void	check_errors(t_game *game)
 		error_msg(game, "Map is empty.\n");
 	if (!map_is_rectangular(game->map))
 		error_msg(game, "Map is not rectangular.\n");
-	if (!only_allowed_chars(game))
+	if (!only_allowed_chars(game, -1, -1))
 		error_msg(game, "There's at least one invalid char in the map");
 	if (!walls_are_intact(game->map))
 		error_msg(game, "There's a gap on the wall.\n");

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/28 16:44:29 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:27:15 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	extension_check(char *map_name)
  * @brief this function saves the player and exit's statring positions.
  * y - rows
  * x - columns
- * check: printf("current y: %d\n, current x: %d\n", game->current.y, game->current.x);
+ * check: printf("current y: %d\n, current x: %d\n", 
+ * game->current.y, game->current.x);
  * @param map 
  */
 
@@ -58,7 +59,7 @@ void	coord_init(t_game *game)
 				game->finish = (t_point){j, i};
 		}
 	}
- }
+}
 
 void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos)
 {
@@ -90,18 +91,22 @@ void	map_dup_free(char **map_dup)
 
 void	place_images(t_game *game, t_point coord)
 {
-	t_images sprite;
+	t_images	sprite;
+
 	if (game->map->map_bytes[coord.y][coord.x] == WALL)
 		sprite = game->images[OBST];
 	else if (game->map->map_bytes[coord.y][coord.x] == PLAYER)
 		sprite = game->images[PLAY];
 	else if (game->map->map_bytes[coord.y][coord.x] == COLLECT)
 		sprite = game->images[COLL];
-	else if (game->map->map_bytes[coord.y][coord.x] != WALL)
+	else if (game->map->map_bytes[coord.y][coord.x] == EXIT)
+		sprite = game->images[EXI];
+	else if (game->map->map_bytes[coord.y][coord.x] == WOUT)
+		sprite = game->images[OPDOOR];
+	else if (game->map->map_bytes[coord.y][coord.x] == FIN)
+		sprite = game->images[FINISH];
+	else if (game->map->map_bytes[coord.y][coord.x] == FLOOR)
 		sprite = game->images[BACK];
-	// if (!game->mlx || !game->window || !sprite.img) {
-    //     printf("Invalid argument to mlx_put_image_to_window\n");
-    //     return;
-    // }
-	mlx_put_image_to_window(game->mlx, game->window, sprite.img, (SIZE * coord.x), (SIZE * coord.y));
+	mlx_put_image_to_window(game->mlx, game->window, sprite.img,
+		(SIZE * coord.x), (SIZE * coord.y));
 }

@@ -6,11 +6,26 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/06/28 18:06:52 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:36:22 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+int	finish_game(void *data)
+{
+	t_game	*game;
+
+	game = (t_game *)data;
+	if (game->map->collect == 0)
+	{
+		kill_game(game);
+		ft_printf("Congrats!\n");
+	}
+	else
+		error_msg(game, "You quit.\n");
+	exit(0);
+}
 
 void	kill_images(t_game *game)
 {
@@ -42,9 +57,9 @@ void	kill_game(t_game *game)
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	#ifdef __linux__
- 	if (game->mlx)
- 		mlx_destroy_display(game->mlx);
- 	#endif
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	#endif
 	free(game->mlx);
 }
 
@@ -52,14 +67,6 @@ void	error_msg(t_game *game, char *msg)
 {
 	if (game)
 		kill_game(game);
-	// if (game->window) // necessário?
-	// 	mlx_destroy_window(game->mlx, game->window); 
-	// #ifdef __linux__ // necessário? 
- 	// if (game->mlx)
- 	// 	mlx_destroy_display(game->mlx);
- 	//#endif
-	//free(game->mlx);
 	ft_printf(msg);
 	exit(1);
 }
-

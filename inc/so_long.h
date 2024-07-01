@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/06/28 20:00:39 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:37:25 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@
 
 /* MACROS */
 # define SIZE 32
-# define IMG_NUM 5
+# define IMG_NUM 7
 
 # define IBACK "./images/sand.xpm"
 # define IOBST "./images/grass.xpm"
 # define IPLAY "./images/bunny.xpm"
-# define IEXI "./images/ship.xpm"
+# define IEXI "./images/closed_door.xpm"
+# define IOPDOOR "./images/open_door.xpm"
+# define IFINISH "./images/finish.xpm"
 # define ICOLL "./images/carrot.xpm"
 
 # ifdef __APPLE__
@@ -93,7 +95,9 @@ typedef enum e_map_chars
 	WALL = '1',
 	COLLECT = 'C',
 	PLAYER = 'P',
-	EXIT = 'E'
+	EXIT = 'E',
+	WOUT = 'O',
+	FIN = 'F'
 }			t_map_chars;
 
 typedef enum e_img_index
@@ -102,7 +106,9 @@ typedef enum e_img_index
 	OBST,
 	PLAY,
 	EXI,
-	COLL
+	COLL,
+	OPDOOR,
+	FINISH
 }			t_img_index;
 
 /* STRUCTS */
@@ -149,6 +155,7 @@ typedef struct s_game
 /* FUNCTIONS */
 
 int			extension_check(char *map_name);
+int			finish_game(void *data);
 void		error_msg(t_game *game, char *msg);
 void		kill_game(t_game *game);
 void		load_game(char *map_name);
