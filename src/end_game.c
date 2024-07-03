@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/03 18:03:28 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:52:00 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	finish_game(void *data)
 		ft_printf("Congrats!\n");
 	}
 	else
-		error_msg(game, "You quit.\n");
+	{
+		kill_game(game);
+		ft_printf("You quit!\n");
+	}
 	exit(0);
 }
 
@@ -74,6 +77,7 @@ void	error_msg(t_game *game, char *msg)
 {
 	if (game)
 		kill_game(game);
+		ft_printf("Error\n");
 	ft_printf(msg);
 	exit(1);
 }
