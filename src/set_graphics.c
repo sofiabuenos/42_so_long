@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:22:25 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/01 20:37:33 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:07:44 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	put_game(void *data)
 	ft_printf("Number of moves: %d\n", game->moves);
 	move_player(game);
 	if (game->map->map_bytes[game->finish.y][game->finish.x] == FIN)
-	{
-		printf("%c", game->map->map_bytes[game->finish.y][game->finish.x]);
 		finish_game(game);
-	}
 	return (0);
 }
 

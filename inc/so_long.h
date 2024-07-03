@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/01 20:37:25 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:22:30 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
-#include "../libft/libft.h"
-#include "../ft_printf/ft_printf.h"
-#include "../minilibx-linux/mlx.h"
-#include "../minilibx-mac/mlx.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+# include "../../minilibx-linux/mlx.h"
+# include "../../minilibx-mac/mlx.h"
 
 # define RESET	 "\033[0m"
 # define RED 	 "\033[1;31m"
@@ -29,7 +29,6 @@
 # define MAGENTA	 "\033[1;35m"
 # define CYAN 	"\033[1;36m"
 # define WHITE 	 "\033[1;37m"
-
 
 /* MACROS */
 # define SIZE 32
@@ -167,9 +166,4 @@ void		place_images(t_game *game, t_point coord);
 int			player_moved(t_game *game, t_point next);
 void		move_player(t_game *game);
 t_map_chars	element(t_game *game, t_point pos);
-
-
-int		map_checks(t_map *map, t_game *game);
-void	map_dup_free(char **map_dup);
-int		play_game(t_map *map, t_game *game);
 #endif

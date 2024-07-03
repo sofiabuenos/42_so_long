@@ -6,7 +6,7 @@
 #    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/07/01 20:12:30 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/07/03 17:18:44 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ SRCD = src
 OBJD = objs
 
 ifeq ($(UNAME), Darwin)
-	MLXD = ./minilibx-mac
+	MLXD = ../minilibx-mac
 else
-	MLXD = ./minilibx-linux
+	MLXD = ../minilibx-linux
 endif
 
 #FILES
@@ -51,33 +51,39 @@ CFLAGS = -Wall -Wextra -Werror -g
 LFLAGS = -L ./$(LIBFTD) -lft -L ./$(FTPRINTFD) -lftprintf -I $(INC)
 ifeq ($(UNAME), Darwin) 
 	CC = cc
-	LFLAGS += -framework OpenGL -framework AppKit -L ./minilibx-mac -lmlx
+	LFLAGS += -framework OpenGL -framework AppKit -L $(MLXD) -lmlx
 else ifeq ($(UNAME), FreeBSD) 
 	CC = clang
 else 
 	CC = cc
-	LFLAGS += -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm
+	LFLAGS += -L $(MLXD) -lmlx -Ilmlx -lXext -lX11 -lm
 endif
 
 #RULES
 
 all: $(NAME)
 
-$(NAME): $(OBJD) $(OBJ_TARGET) 
+
+$(NAME): $(OBJD) $(OBJ_TARGET) libft ft_printf minilibx
+	echo "$(YELLOW)Linking: $(RESET) $(CFLAGS) $(GREEN)*$(RESET)"
+	$(CC) $(CFLAGS) $(OBJ_TARGET) $(LFLAGS) -I$(INC) -o $(NAME)
+	echo "$(GREEN)Done!$(RESET)"
+
+libft: $(LIBFTD)/libft.a
+$(LIBFTD)/libft.a:
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)libft/*$(RESET)"
 	make -s -C $(LIBFTD)
 	make bonus -s -C $(LIBFTD)
 
+ft_printf: $(FTPRINTFD)/libftprintf.a
+$(FTPRINTFD)/libftprintf.a:
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)ft_printf/*$(RESET)"
 	make -s -C $(FTPRINTFD)
 
+minilibx: $(MLXD)/libmlx.a
+$(MLXD)/libmlx.a:
 	echo "$(MAGENTA)Compiling: $(RESET) $(GREEN)minilibx/*$(RESET)"
 	make -s -C $(MLXD) 2>/dev/null
-
-	echo "$(YELLOW)Linking: $(RESET) $(CFLAGS) $(GREEN)*$(RESET)"
-	$(CC) $(CFLAGS) $(OBJ_TARGET) $(LFLAGS) -I$(INC) -o $(NAME)
-
-	echo "$(GREEN)Done!$(RESET)"
 
 $(OBJD)/%.o : $(SRCD)/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INC)
@@ -86,9 +92,9 @@ $(OBJD):
 	mkdir -p $(OBJD)
 
 clean:
-	make clean -s -C $(LIBFTD)
-	make clean -s -C $(FTPRINTFD)
-	make clean -s -C $(MLXD) 2>/dev/null
+	make -s -C $(LIBFTD) clean
+	make -s -C $(FTPRINTFD) clean
+	make -s -C $(MLXD) 2>/dev/null clean
 
 	echo "$(RED)Deleted: $(RESET) $(GREEN)$(OBJD)$(RESET)"
 	$(RM) $(OBJD)

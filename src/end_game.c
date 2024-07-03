@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/01 20:36:22 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:03:28 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ void	kill_map(t_map *map)
 	free(map);
 }
 
+/**
+ * @brief 
+ * para mac usar:
+ * 	#ifdef __linux__
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	#endif
+ * @param game 
+ */
 void	kill_game(t_game *game)
 {
 	if (!game)
@@ -56,10 +65,8 @@ void	kill_game(t_game *game)
 		kill_images(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
-	#ifdef __linux__
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
-	#endif
 	free(game->mlx);
 }
 

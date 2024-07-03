@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:31:00 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/01 20:17:10 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:06:24 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,13 @@ void	read_and_get_map(t_game *game, char *map_name)
 void	init_map(t_game *game, char *map_name)
 {
 	t_map	*map;
-	int		i;
 
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		error_msg(game, "Error initiating map structure.\n");
 	game->map = map;
 	read_and_get_map(game, map_name);
-	if (game->map->map_bytes)
-	{
-		i = -1;
-		while (game->map->map_bytes[++i])
-			ft_printf("%s\n", game->map->map_bytes[i]);
-	}
-	else
+	if (!game->map->map_bytes)
 		error_msg(game, "Error allocating map or map file is empty.\n");
 }
 

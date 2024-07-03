@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:45:16 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/01 20:31:06 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:24:17 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ bool	only_allowed_chars(t_game *game, int i, int j)
 				return (false);
 		}
 	}
-	if (game->map->exits == 1 && game->map->players == 1 &&
-		game->map->collect >= 1)
+	if (game->map->exits == 1 && game->map->players == 1
+		&& game->map->collect >= 1)
 		coord_init(game);
 	else
 		error_msg(game, "There's more than one exit/player or no collectable");
