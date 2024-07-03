@@ -1,0 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile02                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/02 15:20:38 by sofiabueno        #+#    #+#              #
+#    Updated: 2024/07/02 15:25:45 by sofiabueno       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+RM = rm -fr
+AR = ar -rcs
+UNAME = $(shell uname)
+
+LIBFTD = libft
+FTPRINTFD = ft_printf
+INC = ./incorreto
+OBJ = ./objs
+SRC = ./src
