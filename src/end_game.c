@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/03 19:52:00 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:12:28 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	finish_game(void *data)
 	if (game->map->collect == 0)
 	{
 		kill_game(game);
-		ft_printf("Congrats!\n");
+		ft_printf(GREEN"Congrats!\n"RESET);
 	}
 	else
 	{
 		kill_game(game);
-		ft_printf("You quit!\n");
+		ft_printf(RED"You quit!\n"RESET);
 	}
 	exit(0);
 }
@@ -77,7 +77,7 @@ void	error_msg(t_game *game, char *msg)
 {
 	if (game)
 		kill_game(game);
-		ft_printf("Error\n");
+	ft_printf(RED"Error\n"RESET);
 	ft_printf(msg);
 	exit(1);
 }

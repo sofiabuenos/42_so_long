@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/03 18:28:51 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 16:55:03 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@
 
 /* MACROS */
 # define SIZE 32
-# define IMG_NUM 7
+# define IMG_NUM 8
 
 # define IBACK "./images/sand.xpm"
 # define IOBST "./images/grass.xpm"
 # define IPLAY "./images/bunny.xpm"
 # define IEXI "./images/closed_door.xpm"
+# define ILPLAY "./images/player_closed_door.xpm"
 # define IOPDOOR "./images/open_door.xpm"
 # define IFINISH "./images/finish.xpm"
 # define ICOLL "./images/carrot.xpm"
@@ -95,6 +96,7 @@ typedef enum e_map_chars
 	COLLECT = 'C',
 	PLAYER = 'P',
 	EXIT = 'E',
+	LOCKP = 'L',
 	WOUT = 'O',
 	FIN = 'F'
 }			t_map_chars;
@@ -104,9 +106,10 @@ typedef enum e_img_index
 	BACK,
 	OBST,
 	PLAY,
-	EXI,
 	COLL,
+	EXI,
 	OPDOOR,
+	LOCKPL,
 	FINISH
 }			t_img_index;
 

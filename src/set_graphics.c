@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:22:25 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/03 17:07:44 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 17:09:34 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	put_game(void *data)
 	if (!player_moved(game, game->next))
 		return (0);
 	game->moves++;
-	ft_printf("Number of moves: %d\n", game->moves);
+	ft_printf(CYAN"Number of moves: %d\n"RESET, game->moves);
 	move_player(game);
 	if (game->map->map_bytes[game->finish.y][game->finish.x] == FIN)
 		finish_game(game);
@@ -70,12 +70,14 @@ void	load_images(t_game *game)
 			&game->images[OBST].width, &game->images[OBST].height);
 	game->images[PLAY].img = mlx_xpm_file_to_image(game->mlx, IPLAY,
 			&game->images[PLAY].width, &game->images[PLAY].height);
-	game->images[EXI].img = mlx_xpm_file_to_image(game->mlx, IEXI,
-			&game->images[EXI].width, &game->images[EXI].height);
 	game->images[COLL].img = mlx_xpm_file_to_image(game->mlx, ICOLL,
 			&game->images[COLL].width, &game->images[COLL].height);
+	game->images[EXI].img = mlx_xpm_file_to_image(game->mlx, IEXI,
+			&game->images[EXI].width, &game->images[EXI].height);
 	game->images[OPDOOR].img = mlx_xpm_file_to_image(game->mlx,
 			IOPDOOR, &game->images[OPDOOR].width, &game->images[OPDOOR].height);
+	game->images[LOCKPL].img = mlx_xpm_file_to_image(game->mlx,
+			ILPLAY, &game->images[LOCKPL].width, &game->images[LOCKPL].height);
 	game->images[FINISH].img = mlx_xpm_file_to_image(game->mlx, IFINISH,
 			&game->images[FINISH].width, &game->images[FINISH].height);
 }

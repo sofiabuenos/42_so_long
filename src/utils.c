@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/01 20:27:15 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:37:22 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	extension_check(char *map_name)
 	int		i;
 
 	i = ft_strlen(map_name);
-	if (i > 3)
+	if (i > 4)
 	{
 		if (!(ft_strnstr((map_name + (i - 4)), ".ber", 4)))
+			return (1);
+		if (map_name[i - 5] == '/')
 			return (1);
 	}
 	return (0);
@@ -70,7 +72,10 @@ void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos)
 	else if (map_dup[pos.y][pos.x] == 'C')
 		game->collected++;
 	else if (map_dup[pos.y][pos.x] == 'E')
+	{
 		game->path = true;
+		return ;
+	}
 	map_dup[pos.y][pos.x] = '1';
 	floodfill(game, map, map_dup, (t_point){pos.x - 1, pos.y});
 	floodfill(game, map, map_dup, (t_point){pos.x + 1, pos.y});
@@ -101,6 +106,8 @@ void	place_images(t_game *game, t_point coord)
 		sprite = game->images[COLL];
 	else if (game->map->map_bytes[coord.y][coord.x] == EXIT)
 		sprite = game->images[EXI];
+	else if (game->map->map_bytes[coord.y][coord.x] == LOCKP)
+		sprite = game->images[LOCKPL];
 	else if (game->map->map_bytes[coord.y][coord.x] == WOUT)
 		sprite = game->images[OPDOOR];
 	else if (game->map->map_bytes[coord.y][coord.x] == FIN)

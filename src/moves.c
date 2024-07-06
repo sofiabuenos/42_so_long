@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:22:37 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/01 20:23:52 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:36:23 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,51 @@ int	player_moved(t_game *game, t_point next)
 	return (1);
 }
 
+void	action(t_game *game)
+{
+	place_images(game, game->next);
+	place_images(game, game->current);
+	place_images (game, game->finish);
+	game->current = game->next;
+}
+
 t_map_chars	element(t_game *game, t_point pos)
 {
 	return (game->map->map_bytes[pos.y][pos.x]);
 }
 
+void	collect_check(t_game *game)
+{
+	game->map->collect--;
+	game->map->map_bytes[game->next.y][game->next.x] = PLAYER;
+	if (game->map->map_bytes[game->current.y][game->current.x] == LOCKP)
+		game->map->map_bytes[game->current.y][game->current.x] = EXIT;
+	else
+		game->map->map_bytes[game->current.y][game->current.x] = FLOOR;
+	if (game->map->collect == 0)
+		game->map->map_bytes[game->finish.y][game->finish.x] = WOUT;
+}
+
 void	move_player(t_game *game)
 {
 	if (element(game, game->next) == COLLECT)
-		game->map->collect--;
-	if (game->map->collect == 0)
-		game->map->map_bytes[game->finish.y][game->finish.x] = WOUT;
-	if (element(game, game->next) == WOUT)
+	{
+		collect_check(game);
+	}
+	else if (game->map->collect != 0 && (element(game, game->next) == EXIT))
+	{
+		game->map->map_bytes[game->next.y][game->next.x] = LOCKP;
+		game->map->map_bytes[game->current.y][game->current.x] = FLOOR;
+	}
+	else if (element(game, game->next) == WOUT)
 		game->map->map_bytes[game->next.y][game->next.x] = FIN;
 	else
+	{
 		game->map->map_bytes[game->next.y][game->next.x] = PLAYER;
-	game->map->map_bytes[game->current.y][game->current.x] = FLOOR;
-	place_images(game, game->next);
-	place_images(game, game->current);
-	place_images (game, game->finish);
-	game->current = game->next;
+		if (game->map->map_bytes[game->current.y][game->current.x] == LOCKP)
+			game->map->map_bytes[game->current.y][game->current.x] = EXIT;
+		else
+			game->map->map_bytes[game->current.y][game->current.x] = FLOOR;
+	}
+	action(game);
 }
