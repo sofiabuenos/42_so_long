@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:44:52 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/06 18:12:28 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:48:28 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	finish_game(void *data)
 	t_game	*game;
 
 	game = (t_game *)data;
-	if (game->map->collect == 0)
+	if (game->map->collect == 0
+		&& game->next.x == game->finish.x && game->next.y == game->finish.y)
 	{
 		kill_game(game);
 		ft_printf(GREEN"Congrats!\n"RESET);

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:31:00 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/08 15:44:46 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:49:48 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ int	no_empty_line(t_game *game, char *map_str)
 {
 	int	i;
 
-	if (map_str[0] == '\n' || map_str[0] == '\0' || map_str[ft_strlen(map_str) - 1] == '\n')
-		{
-			free(map_str);
-			error_msg (game, "There's an emty line on the map\n");
-		}
+	if (map_str[0] == '\n' || map_str[0] == '\0'
+		|| map_str[ft_strlen(map_str) - 1] == '\n')
+	{
+		free(map_str);
+		error_msg (game, "There's an emty line on the map\n");
+	}
 	i = -1;
 	while (map_str[++i])
 	{
