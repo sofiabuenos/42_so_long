@@ -6,7 +6,7 @@
 #    By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 16:08:06 by sofiabueno        #+#    #+#              #
-#    Updated: 2024/07/06 18:43:15 by sbueno-s         ###   ########.fr        #
+#    Updated: 2024/07/06 19:04:43 by sbueno-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ SRCD = src
 OBJD = objs
 
 ifeq ($(UNAME), Darwin)
-	MLXD = ../minilibx-mac
+	MLXD = minilibx-mac
 else
-	MLXD = ../minilibx-linux
+	MLXD = minilibx-linux
 endif
 
 #FILES

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:20:00 by sbueno-s          #+#    #+#             */
-/*   Updated: 2024/07/06 16:55:03 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/06 19:06:48 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
-# include "../../minilibx-linux/mlx.h"
-# include "../../minilibx-mac/mlx.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-mac/mlx.h"
 
 # define RESET	 "\033[0m"
 # define RED 	 "\033[1;31m"

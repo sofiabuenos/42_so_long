@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:24:57 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/06 18:37:22 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:57:27 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ void	floodfill( t_game *game, t_map *map, char **map_dup, t_point pos)
 	else if (map_dup[pos.y][pos.x] == 'C')
 		game->collected++;
 	else if (map_dup[pos.y][pos.x] == 'E')
-	{
 		game->path = true;
-		return ;
-	}
 	map_dup[pos.y][pos.x] = '1';
 	floodfill(game, map, map_dup, (t_point){pos.x - 1, pos.y});
 	floodfill(game, map, map_dup, (t_point){pos.x + 1, pos.y});
