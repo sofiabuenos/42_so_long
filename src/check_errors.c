@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:45:16 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/03 17:24:17 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:15:32 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	walls_are_intact(t_map *map)
 	while (map->map_bytes[++i])
 	{
 		j = -1;
-		if (i == 0 || i == map->rows)
+		if (i == 0 || i == (map->rows -1))
 		{
 			while (map->map_bytes[i][++j])
 				if (map->map_bytes[i][j] != '1')
@@ -80,7 +80,8 @@ bool	only_allowed_chars(t_game *game, int i, int j)
 		&& game->map->collect >= 1)
 		coord_init(game);
 	else
-		error_msg(game, "There's more than one exit/player or no collectable");
+		error_msg(game, "Map wrongly formatted.\nThe map must contain 1 exit,"
+			" at least 1 collectible, and 1 starting position to be valid.\n");
 	return (true);
 }
 
@@ -111,7 +112,7 @@ void	check_errors(t_game *game)
 	if (!map_is_rectangular(game->map))
 		error_msg(game, "Map is not rectangular.\n");
 	if (!only_allowed_chars(game, -1, -1))
-		error_msg(game, "There's at least one invalid char in the map");
+		error_msg(game, "There's at least one invalid char in the map\n");
 	if (!walls_are_intact(game->map))
 		error_msg(game, "There's a gap on the wall.\n");
 	if (!path_is_valid(game, game->map))

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:31:00 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/07/08 19:54:36 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:12:13 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	no_empty_line(t_game *game, char *map_str)
 {
 	int	i;
 
+	if (!map_str || !*map_str)
+	{
+		error_msg(game, "Map is empty\n");
+		return (0);
+	}
 	if (map_str[0] == '\n' || map_str[0] == '\0'
 		|| map_str[ft_strlen(map_str) - 1] == '\n')
 	{
@@ -44,21 +49,22 @@ void	read_and_get_map(t_game *game, char *map_name)
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
 		error_msg(game, "Couldn't open map file :(\n");
-	line = get_next_line(fd);
-	while (line)
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		map_str = ft_strjoin_gnl(map_str, line);
 		free(line);
-		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
-	close(fd);
-	if (no_empty_line(game, map_str))
+	if (no_empty_line(game, map_str) == 1 && map_str != NULL)
 	{
 		game->map->map_bytes = ft_split(map_str, '\n');
 		free(map_str);
 	}
+	if (line)
+		free(line);
+	close(fd);
 }
 
 void	init_map(t_game *game, char *map_name)
